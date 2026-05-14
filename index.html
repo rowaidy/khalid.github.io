@@ -1,0 +1,1678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Khalid Abuelhassan — Cybersecurity Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0d0c;
+    --bg-elev: #111614;
+    --bg-card: #141a18;
+    --ink: #e8ebe6;
+    --ink-dim: #8a938b;
+    --ink-faint: #4a524c;
+    --accent: #d4ff3a;
+    --accent-warm: #ff7a45;
+    --line: #1f2723;
+    --line-bright: #2d3832;
+    --grid: rgba(212, 255, 58, 0.04);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  /* Offset for sticky topbar so nav anchors land below it */
+  section, .hero {
+    scroll-margin-top: 60px;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 300;
+    line-height: 1.55;
+    overflow-x: hidden;
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 64px 64px;
+    background-position: -1px -1px;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(212, 255, 58, 0.06), transparent 70%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 2;
+    mix-blend-mode: overlay;
+  }
+
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 32px;
+    position: relative;
+    z-index: 3;
+  }
+
+  /* === TOP BAR === */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(10, 13, 12, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+  .topbar-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 32px;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  .topbar-left { display: flex; gap: 24px; align-items: center; color: var(--ink-dim); }
+  .topbar-left .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 12px var(--accent);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  .topbar-right { display: flex; gap: 28px; color: var(--ink-dim); align-items: center; }
+  .topbar-right a { color: var(--ink-dim); text-decoration: none; transition: color 0.2s; }
+  .topbar-right a:hover { color: var(--accent); }
+  .download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 14px;
+    background: var(--accent);
+    color: var(--bg) !important;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-decoration: none;
+    border: 1px solid var(--accent);
+    transition: all 0.2s ease;
+  }
+  .download-btn:hover {
+    background: transparent;
+    color: var(--accent) !important;
+    box-shadow: 0 0 16px rgba(212, 255, 58, 0.4);
+  }
+  .download-btn svg { width: 12px; height: 12px; }
+
+  /* === HERO === */
+  .hero {
+    padding: 120px 0 80px;
+    position: relative;
+  }
+  .hero-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .hero-meta::before {
+    content: '';
+    width: 48px;
+    height: 1px;
+    background: var(--accent);
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(56px, 9vw, 132px);
+    line-height: 0.92;
+    letter-spacing: -0.04em;
+    margin-bottom: 40px;
+  }
+  .hero h1 .italic {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent);
+  }
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    margin-top: 64px;
+  }
+  .hero-stat {
+    padding: 28px 24px;
+    border-right: 1px solid var(--line);
+  }
+  .hero-stat:last-child { border-right: none; }
+  .hero-stat-num {
+    font-family: 'Fraunces', serif;
+    font-size: 48px;
+    font-weight: 300;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .hero-stat-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--ink-dim);
+  }
+
+  .hero-brief {
+    margin-top: 64px;
+    max-width: 720px;
+    font-size: 20px;
+    line-height: 1.55;
+    color: var(--ink);
+    font-weight: 300;
+  }
+  .hero-brief::first-letter {
+    font-family: 'Fraunces', serif;
+    font-size: 64px;
+    font-weight: 400;
+    float: left;
+    line-height: 0.85;
+    margin: 6px 14px 0 0;
+    color: var(--accent);
+  }
+
+  /* === SECTION === */
+  section {
+    padding: 100px 0;
+    position: relative;
+  }
+  .section-header {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 48px;
+    margin-bottom: 64px;
+    align-items: baseline;
+  }
+  .section-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .section-num::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    margin-right: 12px;
+    transform: rotate(45deg);
+    vertical-align: middle;
+  }
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .section-title .italic {
+    font-style: italic;
+    color: var(--ink-dim);
+  }
+
+  /* === TIMELINE === */
+  .timeline {
+    position: relative;
+    padding-left: 200px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 200px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--line-bright);
+  }
+  .timeline-item {
+    position: relative;
+    padding-left: 64px;
+    padding-bottom: 80px;
+  }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .timeline-dot {
+    position: absolute;
+    left: -5px;
+    top: 8px;
+    width: 11px;
+    height: 11px;
+    background: var(--bg);
+    border: 1px solid var(--accent);
+    transform: rotate(45deg);
+  }
+  .timeline-item.current .timeline-dot {
+    background: var(--accent);
+    box-shadow: 0 0 16px var(--accent);
+  }
+  .timeline-date {
+    position: absolute;
+    left: -200px;
+    top: 0;
+    width: 168px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    text-align: right;
+  }
+  .timeline-date .current-tag {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--bg);
+    padding: 2px 8px;
+    font-weight: 500;
+    margin-top: 6px;
+  }
+  .timeline-company {
+    font-family: 'Fraunces', serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+  .timeline-role {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 20px;
+  }
+  .timeline-vendors {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-dim);
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .timeline-vendors span {
+    color: var(--ink);
+  }
+  .timeline-duties {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 32px;
+    margin-top: 24px;
+  }
+  .timeline-duty {
+    font-size: 14px;
+    color: var(--ink-dim);
+    line-height: 1.55;
+    padding-left: 18px;
+    position: relative;
+  }
+  .timeline-duty::before {
+    content: '─';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+  .timeline-duty strong {
+    color: var(--ink);
+    font-weight: 400;
+  }
+
+  /* === COMPETENCIES === */
+  .comp-subsection {
+    margin-bottom: 64px;
+  }
+  .comp-subsection:last-child { margin-bottom: 0; }
+
+  .comp-subheader {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 48px;
+    margin-bottom: 32px;
+    align-items: baseline;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--line);
+  }
+  .comp-subheader-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .comp-subheader-tag::before {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: var(--accent);
+  }
+  .comp-subheader-title {
+    font-family: 'Fraunces', serif;
+    font-size: 36px;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .comp-subheader-title .italic {
+    font-style: italic;
+    color: var(--ink-dim);
+  }
+
+  .competencies-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+  }
+  .comp-card {
+    flex: 1 1 calc(33.333% - 16px);
+    min-width: 280px;
+    max-width: calc(33.333% - 11px);
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    padding: 32px 28px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .comp-card:hover {
+    background: var(--bg-card);
+    border-color: var(--line-bright);
+  }
+  .comp-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 0; height: 1px;
+    background: var(--accent);
+    transition: width 0.4s;
+  }
+  .comp-card:hover::before { width: 100%; }
+  .comp-icon {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    margin-bottom: 16px;
+    letter-spacing: 0.15em;
+  }
+  .comp-title {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 16px;
+    color: var(--ink);
+  }
+  .comp-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .comp-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    padding: 4px 10px;
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    color: var(--ink-dim);
+    transition: all 0.2s;
+  }
+  .comp-card:hover .comp-tag {
+    border-color: var(--line-bright);
+    color: var(--ink);
+  }
+
+  /* === EDUCATION + BIO === */
+  .info-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 64px;
+  }
+  .info-block {
+    border-top: 1px solid var(--line);
+    padding-top: 32px;
+  }
+  .info-block + .info-block { margin-top: 48px; }
+  .info-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    margin-bottom: 16px;
+  }
+  .info-content {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 300;
+    line-height: 1.25;
+  }
+  .info-content .meta {
+    display: block;
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 14px;
+    color: var(--ink-dim);
+    margin-top: 8px;
+  }
+  .bio-list {
+    list-style: none;
+  }
+  .bio-list li {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--ink);
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .bio-list li span:first-child {
+    color: var(--ink-dim);
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+  }
+
+  /* === QUALIFICATIONS === */
+  .quals-intro {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 24px;
+    font-weight: 300;
+    color: var(--ink-dim);
+    margin-bottom: 64px;
+    max-width: 720px;
+  }
+  .vendor-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+  .vendor-card {
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    padding: 32px;
+    transition: all 0.3s;
+    position: relative;
+  }
+  .vendor-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+  .vendor-card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 16px;
+    margin-bottom: 20px;
+  }
+  .vendor-name {
+    font-family: 'Fraunces', serif;
+    font-size: 24px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+  .vendor-count {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+  }
+  .vendor-certs {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .vendor-certs li {
+    font-size: 13px;
+    color: var(--ink);
+    line-height: 1.45;
+    padding-left: 16px;
+    position: relative;
+  }
+  .vendor-certs li::before {
+    content: '+';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .vendor-certs li.featured {
+    color: var(--ink);
+  }
+  .vendor-certs li.featured::before {
+    content: '★';
+  }
+
+  /* === SIGNATURE / PORTRAIT === */
+  .signature {
+    padding: 120px 0 80px;
+    border-top: 1px solid var(--line);
+    position: relative;
+    overflow: hidden;
+  }
+  .signature::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: 0.5;
+  }
+  .signature-grid {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .portrait-wrap {
+    position: relative;
+  }
+  .portrait-frame {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    background: var(--bg-elev);
+    border: 1px solid var(--line-bright);
+    overflow: hidden;
+  }
+  .portrait-frame::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: -1px;
+    width: 24px; height: 24px;
+    border-top: 2px solid var(--accent);
+    border-left: 2px solid var(--accent);
+    z-index: 2;
+  }
+  .portrait-frame::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; right: -1px;
+    width: 24px; height: 24px;
+    border-bottom: 2px solid var(--accent);
+    border-right: 2px solid var(--accent);
+    z-index: 2;
+  }
+  .portrait-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    filter: contrast(1.05) saturate(0.9);
+    transition: filter 0.4s;
+  }
+  .portrait-frame:hover img {
+    filter: contrast(1.1) saturate(1.05);
+  }
+  .portrait-frame .scan-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(0deg, rgba(212,255,58,0.04) 0px, rgba(212,255,58,0.04) 1px, transparent 1px, transparent 3px);
+    pointer-events: none;
+    mix-blend-mode: overlay;
+  }
+  .portrait-tag {
+    margin-top: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-dim);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid var(--line);
+    padding-top: 12px;
+  }
+  .portrait-tag span:last-child {
+    color: var(--accent);
+  }
+
+  .sig-content .section-num {
+    margin-bottom: 24px;
+    display: block;
+  }
+  .sig-name {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(48px, 6vw, 80px);
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin-bottom: 8px;
+  }
+  .sig-name .italic { font-style: italic; color: var(--accent); }
+  .sig-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-dim);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+  }
+
+  .contact-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-top: 1px solid var(--line);
+  }
+  .contact-row {
+    display: grid;
+    grid-template-columns: 160px 1fr auto;
+    align-items: center;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--line);
+    transition: padding 0.2s;
+  }
+  .contact-row:hover { padding-left: 12px; }
+  .contact-row .c-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-faint);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .contact-row .c-value {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--ink);
+  }
+  .contact-row .c-value a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all 0.2s;
+  }
+  .contact-row .c-value a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+  .contact-row .c-arrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: var(--ink-faint);
+    transition: all 0.2s;
+  }
+  .contact-row:hover .c-arrow {
+    color: var(--accent);
+    transform: translateX(4px);
+  }
+
+  .sig-actions {
+    margin-top: 48px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 24px;
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--line-bright);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.25s ease;
+  }
+  .action-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    box-shadow: 0 0 24px rgba(212, 255, 58, 0.15);
+  }
+  .action-btn.primary {
+    background: var(--accent);
+    color: var(--bg);
+    border-color: var(--accent);
+  }
+  .action-btn.primary:hover {
+    background: transparent;
+    color: var(--accent);
+  }
+  .action-btn svg { width: 14px; height: 14px; }
+
+  @media (max-width: 900px) {
+    .signature-grid { grid-template-columns: 1fr; gap: 40px; }
+    .portrait-wrap { max-width: 280px; }
+    .contact-row { grid-template-columns: 120px 1fr auto; gap: 12px; }
+    .contact-row .c-value { font-size: 15px; }
+  }
+
+  /* === FOOTER === */
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 60px 0 40px;
+    margin-top: 80px;
+  }
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  .footer-sig {
+    font-family: 'Fraunces', serif;
+    font-size: 32px;
+    font-weight: 400;
+    font-style: italic;
+  }
+  .footer-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    text-align: right;
+  }
+  .footer-meta a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .footer-meta a:hover { text-decoration: underline; }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .section-header { grid-template-columns: 1fr; gap: 16px; }
+    .comp-subheader { grid-template-columns: 1fr; gap: 12px; }
+    .comp-subheader-title { font-size: 28px; }
+    .timeline { padding-left: 0; }
+    .timeline::before { left: 5px; }
+    .timeline-item { padding-left: 32px; }
+    .timeline-date { position: static; width: auto; text-align: left; margin-bottom: 12px; }
+    .timeline-duties { grid-template-columns: 1fr; }
+    .competencies-grid { gap: 12px; }
+    .comp-card { flex: 1 1 100%; max-width: 100%; }
+    .info-grid { grid-template-columns: 1fr; gap: 32px; }
+    .vendor-grid { grid-template-columns: 1fr; }
+    .hero-stats { grid-template-columns: repeat(2, 1fr); }
+    .hero-stat:nth-child(2) { border-right: none; }
+    .topbar-right { display: none; }
+  }
+
+  /* fade-in on load */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: reveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .reveal-1 { animation-delay: 0.1s; }
+  .reveal-2 { animation-delay: 0.25s; }
+  .reveal-3 { animation-delay: 0.4s; }
+  .reveal-4 { animation-delay: 0.55s; }
+  @keyframes reveal {
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<!-- === TOP BAR === -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-left">
+      <span class="dot"></span>
+      <span>K.A — CV / 2025</span>
+      <span style="color: var(--ink-faint)">//</span>
+      <span>RIYADH · SA</span>
+    </div>
+    <div class="topbar-right">
+      <a href="#brief">Brief</a>
+      <a href="#experience">Experience</a>
+      <a href="#competencies">Competencies</a>
+      <a href="#education">Education</a>
+      <a href="#qualifications">Qualifications</a>
+      <a href="Khalid-Abuelhassan-CV.pdf" download class="download-btn" title="Download full CV (PDF)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square">
+          <path d="M12 3v14m0 0l-5-5m5 5l5-5M5 21h14"/>
+        </svg>
+        Download CV
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- === HERO === -->
+<section class="hero" id="brief">
+  <div class="container">
+    <div class="hero-meta reveal reveal-1">SECURE / DESIGN / DELIVER</div>
+    <h1 class="reveal reveal-2">
+      Khalid<br>
+      Abuelhassan<span class="italic">.</span>
+    </h1>
+
+    <div class="hero-stats reveal reveal-3">
+      <div class="hero-stat">
+        <div class="hero-stat-num">10<span style="color: var(--ink-dim); font-size: 28px;">+</span></div>
+        <div class="hero-stat-label">Years in Cybersecurity</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">5</div>
+        <div class="hero-stat-label">Companies / Roles</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">15<span style="color: var(--ink-dim); font-size: 28px;">+</span></div>
+        <div class="hero-stat-label">Vendors Certified</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">2</div>
+        <div class="hero-stat-label">Languages — AR / EN</div>
+      </div>
+    </div>
+
+    <p class="hero-brief reveal reveal-4">
+      Cybersecurity engineer with over a decade of progressive experience serving Enterprise and SMB customers — designing and proposing solutions that address security challenges, then delivering the presentations, demonstrations and proofs of concept that close them.
+    </p>
+  </div>
+</section>
+
+<!-- === EXPERIENCE === -->
+<section id="experience">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">01 / Experience</div>
+      <h2 class="section-title">Career <span class="italic">timeline</span></h2>
+    </div>
+
+    <div class="timeline">
+
+      <!-- KASPERSKY -->
+      <div class="timeline-item current">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">
+          MAR 2021 — PRESENT<br>
+          <span class="current-tag">CURRENT</span>
+        </div>
+        <h3 class="timeline-company">Kaspersky Lab</h3>
+        <div class="timeline-role">Pre-sales Manager / Saudi Arabia &amp; Bahrain</div>
+        <div class="timeline-duties">
+          <div class="timeline-duty"><strong>Team leadership</strong> — supervised and led a team of 3 employees, conducted performance reviews, managed recruitment and onboarding.</div>
+          <div class="timeline-duty"><strong>Solution architecture</strong> — planned, developed and tested technical solutions and architectures aligned to client needs.</div>
+          <div class="timeline-duty"><strong>POV / POC delivery</strong> — managed and delivered proofs of value across the full Kaspersky portfolio with custom test cases.</div>
+          <div class="timeline-duty"><strong>RFI / RFP response</strong> — owned technical responses to formal tenders for KSA and Bahrain customers.</div>
+          <div class="timeline-duty"><strong>Customer presentations</strong> — delivered product demos, executive briefings and consultative knowledge transfer.</div>
+          <div class="timeline-duty"><strong>Partner enablement</strong> — coached channel partners on KL solutions, technical acumen and sales skills.</div>
+          <div class="timeline-duty"><strong>Training delivery</strong> — adapted and delivered partner and customer training across the Kaspersky stack.</div>
+          <div class="timeline-duty"><strong>Brand representation</strong> — represented KL products and solutions at conferences and external events.</div>
+        </div>
+      </div>
+
+      <!-- APTEC -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">NOV 2018 — JAN 2021<br>2 yrs 3 mo</div>
+        <h3 class="timeline-company">Aptec — Ingram Micro</h3>
+        <div class="timeline-role">Cybersecurity Pre-sales Engineer</div>
+        <div class="timeline-vendors">VENDORS: <span>Sophos · Forcepoint · FireEye · AlienVault</span></div>
+        <div class="timeline-duties">
+          <div class="timeline-duty"><strong>Pre-sales support</strong> — hands-on technical support across the full sales cycle for cybersecurity solutions.</div>
+          <div class="timeline-duty"><strong>Solution design</strong> — qualification, BOQ generation, proposal write-ups and high-quality RFP / RFQ / RFI responses.</div>
+          <div class="timeline-duty"><strong>POCs &amp; demos</strong> — conducted and documented successful proofs of concept and live demonstrations.</div>
+          <div class="timeline-duty"><strong>Trusted advisor</strong> — built technical relationships as a consultant to partners and customers.</div>
+          <div class="timeline-duty"><strong>Competitive analysis</strong> — compared competing products to specify the most advantageous solutions.</div>
+          <div class="timeline-duty"><strong>Partner enablement</strong> — trained partner technical teams on vendor portfolios and sizing methodology.</div>
+        </div>
+      </div>
+
+      <!-- ADMAK -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">AUG 2017 — OCT 2018<br>1 yr 3 mo</div>
+        <h3 class="timeline-company">Admak-Tech</h3>
+        <div class="timeline-role">ICT Security Engineer / Technical Supervisor</div>
+        <div class="timeline-duties">
+          <div class="timeline-duty"><strong>Dual role</strong> — held both security engineering and technical supervisor responsibilities.</div>
+          <div class="timeline-duty"><strong>Pre- &amp; post-sales</strong> — supported the sales team through the full cycle of cybersecurity solutions.</div>
+          <div class="timeline-duty"><strong>SOWs &amp; HLDs</strong> — produced professional Statements of Work and High-Level Designs for recommended solutions.</div>
+          <div class="timeline-duty"><strong>Cross-vendor comparisons</strong> — created reference comparisons to aid customer decisions.</div>
+          <div class="timeline-duty"><strong>Operations supervision</strong> — planned and oversaw day-to-day technical support, RMA, installations and approvals.</div>
+          <div class="timeline-duty"><strong>Project oversight</strong> — supervised SOW execution, change requests, work orders and sign-offs.</div>
+        </div>
+      </div>
+
+      <!-- ORBIT -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">JUN 2015 — FEB 2016<br>9 mo</div>
+        <h3 class="timeline-company">Orbit Generation for Trading</h3>
+        <div class="timeline-role">Pre-sales Engineer</div>
+        <div class="timeline-duties">
+          <div class="timeline-duty"><strong>Opportunity scoping</strong> — prioritised technical effort to maximise team productivity and profit.</div>
+          <div class="timeline-duty"><strong>Needs assessment</strong> — assessed met and unmet customer needs to recommend optimal solutions.</div>
+          <div class="timeline-duty"><strong>Cross-functional coordination</strong> — aligned solution design with sales, support and service teams.</div>
+          <div class="timeline-duty"><strong>Business development</strong> — pursued additional opportunities within existing customer accounts.</div>
+        </div>
+      </div>
+
+      <!-- MANZUMA -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">JAN 2014 — NOV 2014<br>11 mo</div>
+        <h3 class="timeline-company">Manzuma Integrated Technology</h3>
+        <div class="timeline-role">Technical Supervisor</div>
+        <div class="timeline-duties">
+          <div class="timeline-duty"><strong>Pre-sales assistance</strong> — provided technical guidance and product education.</div>
+          <div class="timeline-duty"><strong>Training delivery</strong> — arranged and delivered product training; produced support material for the sales team.</div>
+          <div class="timeline-duty"><strong>Custom solutions</strong> — helped design solutions tailored to customer requirements.</div>
+          <div class="timeline-duty"><strong>Reporting</strong> — prepared activity reports and maintained customer records.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- === COMPETENCIES === -->
+<section id="competencies">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">02 / Capabilities</div>
+      <h2 class="section-title">Core <span class="italic">competencies</span></h2>
+    </div>
+
+    <!-- === SUBSECTION A — TECHNICAL CORE === -->
+    <div class="comp-subsection">
+      <div class="comp-subheader">
+        <div class="comp-subheader-tag">A / Technical Core</div>
+        <h3 class="comp-subheader-title">Hands-on <span class="italic">engineering</span></h3>
+      </div>
+
+      <div class="competencies-grid">
+
+        <div class="comp-card">
+          <div class="comp-icon">/ A.01 — INFRASTRUCTURE &amp; SYSTEMS</div>
+          <div class="comp-title">Platforms &amp; servers</div>
+          <div class="comp-items">
+            <span class="comp-tag">Docker</span>
+            <span class="comp-tag">VMware</span>
+            <span class="comp-tag">GCP</span>
+            <span class="comp-tag">Linux</span>
+            <span class="comp-tag">Windows Server</span>
+          </div>
+        </div>
+
+        <div class="comp-card">
+          <div class="comp-icon">/ A.02 — NETWORK DESIGN</div>
+          <div class="comp-title">Secure architectures</div>
+          <div class="comp-items">
+            <span class="comp-tag">Active Directory</span>
+            <span class="comp-tag">Network Segmentation</span>
+            <span class="comp-tag">VLAN / Trunking</span>
+            <span class="comp-tag">OSPF / EIGRP</span>
+            <span class="comp-tag">CCNA-level Routing</span>
+          </div>
+        </div>
+
+        <div class="comp-card">
+          <div class="comp-icon">/ A.03 — OFFENSIVE SECURITY</div>
+          <div class="comp-title">Penetration testing</div>
+          <div class="comp-items">
+            <span class="comp-tag">Packet Analysis</span>
+            <span class="comp-tag">Exploitation</span>
+            <span class="comp-tag">Credential Harvesting</span>
+            <span class="comp-tag">System Fingerprinting</span>
+            <span class="comp-tag">DNS Hijacking</span>
+            <span class="comp-tag">Wireless Pentesting</span>
+          </div>
+        </div>
+
+        <div class="comp-card">
+          <div class="comp-icon">/ A.04 — INCIDENT RESPONSE</div>
+          <div class="comp-title">IR &amp; threat hunting</div>
+          <div class="comp-items">
+            <span class="comp-tag">Executable Anomalies</span>
+            <span class="comp-tag">Packing Analysis</span>
+            <span class="comp-tag">AutoStart Persistence</span>
+            <span class="comp-tag">DLL Hijacking</span>
+            <span class="comp-tag">WMI Events</span>
+            <span class="comp-tag">Scheduled Tasks</span>
+            <span class="comp-tag">Service Alteration</span>
+          </div>
+        </div>
+
+        <div class="comp-card">
+          <div class="comp-icon">/ A.05 — THE SECURITY STACK</div>
+          <div class="comp-title">Defensive solutions</div>
+          <div class="comp-items">
+            <span class="comp-tag">EDR / NDR</span>
+            <span class="comp-tag">Vulnerability Assessment</span>
+            <span class="comp-tag">Endpoint Protection</span>
+            <span class="comp-tag">Email Security</span>
+            <span class="comp-tag">Web Security</span>
+            <span class="comp-tag">Sandboxing</span>
+            <span class="comp-tag">Threat Intelligence</span>
+            <span class="comp-tag">Solution Sizing</span>
+          </div>
+        </div>
+
+        <div class="comp-card">
+          <div class="comp-icon">/ A.06 — PROGRAMMING &amp; AUTOMATION</div>
+          <div class="comp-title">Scripting &amp; development</div>
+          <div class="comp-items">
+            <span class="comp-tag">Bash</span>
+            <span class="comp-tag">PowerShell</span>
+            <span class="comp-tag">SQL</span>
+            <span class="comp-tag">Ruby</span>
+            <span class="comp-tag">C / C++ / C#</span>
+            <span class="comp-tag">HTML · CSS · JS</span>
+            <span class="comp-tag">MVC Web Dev</span>
+          </div>
+        </div>
+
+        <div class="comp-card">
+          <div class="comp-icon">/ A.07 — POC EXECUTION</div>
+          <div class="comp-title">Live demonstrations</div>
+          <div class="comp-items">
+            <span class="comp-tag">Kali Linux</span>
+            <span class="comp-tag">Metasploit</span>
+            <span class="comp-tag">Burp Suite</span>
+            <span class="comp-tag">Nmap</span>
+            <span class="comp-tag">Wireshark</span>
+            <span class="comp-tag">Nessus</span>
+            <span class="comp-tag">Hydra</span>
+            <span class="comp-tag">John the Ripper</span>
+            <span class="comp-tag">Aircrack-ng</span>
+            <span class="comp-tag">SQLmap</span>
+            <span class="comp-tag">BloodHound</span>
+            <span class="comp-tag">Mimikatz</span>
+            <span class="comp-tag">Cobalt Strike</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- === SUBSECTION B — CONSULTATIVE & STRATEGIC SALES === -->
+    <div class="comp-subsection">
+      <div class="comp-subheader">
+        <div class="comp-subheader-tag">B / Strategic Sales</div>
+        <h3 class="comp-subheader-title">Consultative <span class="italic">delivery</span></h3>
+      </div>
+
+      <div class="competencies-grid">
+
+        <div class="comp-card">
+          <div class="comp-icon">/ B.01 — SOLUTION DESIGN</div>
+          <div class="comp-title">Architecture &amp; research</div>
+          <div class="comp-items">
+            <span class="comp-tag">Deep-dive Research</span>
+            <span class="comp-tag">Custom Architectures</span>
+            <span class="comp-tag">Client Environment Mapping</span>
+            <span class="comp-tag">Solution Sizing</span>
+            <span class="comp-tag">HLD / LLD</span>
+          </div>
+        </div>
+
+        <div class="comp-card">
+          <div class="comp-icon">/ B.02 — PROPOSAL &amp; DOCS</div>
+          <div class="comp-title">Technical writing</div>
+          <div class="comp-items">
+            <span class="comp-tag">Cybersecurity Docs</span>
+            <span class="comp-tag">RFP / RFI / RFQ</span>
+            <span class="comp-tag">SOWs</span>
+            <span class="comp-tag">BOQ Generation</span>
+            <span class="comp-tag">Technical Proposals</span>
+          </div>
+        </div>
+
+        <div class="comp-card">
+          <div class="comp-icon">/ B.03 — COMPETITIVE INTEL</div>
+          <div class="comp-title">Gap &amp; vendor analysis</div>
+          <div class="comp-items">
+            <span class="comp-tag">Gap Analysis</span>
+            <span class="comp-tag">Competitive Comparisons</span>
+            <span class="comp-tag">Feature Mapping</span>
+            <span class="comp-tag">Vendor Benchmarking</span>
+          </div>
+        </div>
+
+        <div class="comp-card">
+          <div class="comp-icon">/ B.04 — FINANCIAL ACUMEN</div>
+          <div class="comp-title">ROI &amp; TCO</div>
+          <div class="comp-items">
+            <span class="comp-tag">ROI Modelling</span>
+            <span class="comp-tag">Total Cost of Ownership</span>
+            <span class="comp-tag">Business Case</span>
+            <span class="comp-tag">Deployment Costing</span>
+          </div>
+        </div>
+
+        <div class="comp-card">
+          <div class="comp-icon">/ B.05 — VENDOR ECOSYSTEM</div>
+          <div class="comp-title">Cross-platform fluency</div>
+          <div class="comp-items">
+            <span class="comp-tag">Kaspersky</span>
+            <span class="comp-tag">Palo Alto Networks</span>
+            <span class="comp-tag">Group-IB</span>
+            <span class="comp-tag">Mandiant</span>
+            <span class="comp-tag">FireEye</span>
+            <span class="comp-tag">Sophos</span>
+            <span class="comp-tag">Forcepoint</span>
+            <span class="comp-tag">Fortinet</span>
+            <span class="comp-tag">AlienVault</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- === SUBSECTION C — ADVANCED & EMERGING === -->
+    <div class="comp-subsection">
+      <div class="comp-subheader">
+        <div class="comp-subheader-tag">C / Emerging</div>
+        <h3 class="comp-subheader-title">Forward-looking <span class="italic">domains</span></h3>
+      </div>
+
+      <div class="competencies-grid">
+
+        <div class="comp-card">
+          <div class="comp-icon">/ C.01 — FIREWALL ARCHITECTURE</div>
+          <div class="comp-title">NGFW as primary defence</div>
+          <div class="comp-items">
+            <span class="comp-tag">NGFW Placement</span>
+            <span class="comp-tag">Policy Design</span>
+            <span class="comp-tag">Deep Traffic Inspection</span>
+            <span class="comp-tag">VPN Architecture</span>
+            <span class="comp-tag">High Availability</span>
+          </div>
+        </div>
+
+        <div class="comp-card">
+          <div class="comp-icon">/ C.02 — EDGE AI SECURITY</div>
+          <div class="comp-title">Local inference &amp; LLMs</div>
+          <div class="comp-items">
+            <span class="comp-tag">Ollama</span>
+            <span class="comp-tag">llama.cpp</span>
+            <span class="comp-tag">Distributed Inference</span>
+            <span class="comp-tag">Local Model Deployment</span>
+            <span class="comp-tag">Data Sovereignty</span>
+            <span class="comp-tag">AI Risk Surface</span>
+          </div>
+        </div>
+
+        <div class="comp-card">
+          <div class="comp-icon">/ C.03 — ZERO TRUST</div>
+          <div class="comp-title">Never trust, always verify</div>
+          <div class="comp-items">
+            <span class="comp-tag">ZTA Frameworks</span>
+            <span class="comp-tag">Identity-first Access</span>
+            <span class="comp-tag">Micro-segmentation</span>
+            <span class="comp-tag">IT &amp; OT Domains</span>
+            <span class="comp-tag">Continuous Verification</span>
+          </div>
+        </div>
+
+        <div class="comp-card">
+          <div class="comp-icon">/ C.04 — COMPLIANCE MAPPING</div>
+          <div class="comp-title">Regulatory alignment</div>
+          <div class="comp-items">
+            <span class="comp-tag">NIST</span>
+            <span class="comp-tag">ISO 27001</span>
+            <span class="comp-tag">SAMA</span>
+            <span class="comp-tag">NCA ECC</span>
+            <span class="comp-tag">PDPL</span>
+            <span class="comp-tag">Control Mapping</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- === SUBSECTION D — SPECIALIST DOMAINS === -->
+    <div class="comp-subsection">
+      <div class="comp-subheader">
+        <div class="comp-subheader-tag">D / Specialist Domains</div>
+        <h3 class="comp-subheader-title">Deep <span class="italic">expertise</span></h3>
+      </div>
+
+      <div class="competencies-grid">
+
+        <div class="comp-card">
+          <div class="comp-icon">/ D.01 — IR &amp; DIGITAL FORENSICS</div>
+          <div class="comp-title">Advanced investigations</div>
+          <div class="comp-items">
+            <span class="comp-tag">Incident Handling</span>
+            <span class="comp-tag">APT Investigation</span>
+            <span class="comp-tag">Memory Forensics</span>
+            <span class="comp-tag">Volatile Data Capture</span>
+            <span class="comp-tag">Code Injection Analysis</span>
+            <span class="comp-tag">Rootkit Detection</span>
+            <span class="comp-tag">IOC Hunting</span>
+            <span class="comp-tag">Anti-forensics Defeat</span>
+            <span class="comp-tag">Timeline Reconstruction</span>
+          </div>
+        </div>
+
+        <div class="comp-card">
+          <div class="comp-icon">/ D.02 — ETHICAL HACKING</div>
+          <div class="comp-title">OSCP &amp; ECSA methodology</div>
+          <div class="comp-items">
+            <span class="comp-tag">PWK v2 Path</span>
+            <span class="comp-tag">Structured Methodology</span>
+            <span class="comp-tag">Vulnerability Assessment</span>
+            <span class="comp-tag">Actionable Reporting</span>
+            <span class="comp-tag">Network Exploitation</span>
+          </div>
+        </div>
+
+        <div class="comp-card">
+          <div class="comp-icon">/ D.03 — ICS / OT SECURITY</div>
+          <div class="comp-title">Industrial &amp; critical infra</div>
+          <div class="comp-items">
+            <span class="comp-tag">ICS / SCADA</span>
+            <span class="comp-tag">PLC &amp; HMI Security</span>
+            <span class="comp-tag">Modbus / DNP3</span>
+            <span class="comp-tag">IT–OT Segmentation</span>
+            <span class="comp-tag">Purdue Model</span>
+            <span class="comp-tag">OT Asset Discovery</span>
+            <span class="comp-tag">Device-level Risk</span>
+            <span class="comp-tag">ICS Traffic Analysis</span>
+            <span class="comp-tag">Elastic Stack IDS</span>
+            <span class="comp-tag">Sector Dependencies</span>
+          </div>
+        </div>
+
+        <div class="comp-card">
+          <div class="comp-icon">/ D.04 — SECURITY ARCHITECTURE</div>
+          <div class="comp-title">Platforms &amp; SIEM</div>
+          <div class="comp-items">
+            <span class="comp-tag">Sophos XG</span>
+            <span class="comp-tag">Forcepoint NGFW</span>
+            <span class="comp-tag">AlienVault USM Anywhere</span>
+            <span class="comp-tag">Kaspersky KATA / KEDR</span>
+            <span class="comp-tag">FireEye Helix</span>
+            <span class="comp-tag">SIEM Deployment</span>
+            <span class="comp-tag">CySA+ Monitoring</span>
+            <span class="comp-tag">Security+ Controls</span>
+            <span class="comp-tag">Fortinet NSE 1–3</span>
+            <span class="comp-tag">Presales POCs</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- === EDUCATION + BIO === -->
+<section id="education">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">03 / Profile</div>
+      <h2 class="section-title">Education <span class="italic">&amp; bio</span></h2>
+    </div>
+
+    <div class="info-grid">
+      <div>
+        <div class="info-block">
+          <div class="info-label">— Degree</div>
+          <div class="info-content">
+            B.Sc. <em style="color: var(--accent); font-style: italic;">(Honors)</em> Telecommunication Engineering
+            <span class="meta">University of Science &amp; Technology — Khartoum, Sudan · August 2013</span>
+          </div>
+        </div>
+        <div class="info-block">
+          <div class="info-label">— Career goals</div>
+          <div class="info-content" style="font-size: 22px;">
+            To enhance impact and footprint in the regional market, and deepen experience in ICT availability, confidentiality and integrity — elevating service quality for customers and colleagues.
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="info-block">
+          <div class="info-label">— Biodata</div>
+          <ul class="bio-list">
+            <li><span>Languages</span><span>AR · EN</span></li>
+            <li><span>Native</span><span>Arabic</span></li>
+            <li><span>Professional</span><span>English (Advanced)</span></li>
+            <li><span>Council</span><span>Saudi Engineers</span></li>
+            <li><span>Membership</span><span>IAF (Facilitators)</span></li>
+            <li><span>Status</span><span>Valid Iqama</span></li>
+            <li><span>Marital</span><span>Single</span></li>
+            <li><span>Based</span><span>Riyadh, KSA</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- === QUALIFICATIONS === -->
+<section id="qualifications">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">04 / Training</div>
+      <h2 class="section-title">Certifications <span class="italic">&amp; training</span></h2>
+    </div>
+
+    <p class="quals-intro">
+      Trained by the following entities on their technologies, techniques and methodologies — spanning vendor-agnostic foundations and deep, vendor-specific specialisation across the cybersecurity stack.
+    </p>
+
+    <div class="vendor-grid">
+
+      <div class="vendor-card">
+        <div class="vendor-card-head">
+          <div class="vendor-name">SANS Institute</div>
+          <div class="vendor-count">VENDOR-AGNOSTIC</div>
+        </div>
+        <ul class="vendor-certs">
+          <li class="featured">GIAC — GCFA: Advanced Incident Response, Threat Hunting &amp; Digital Forensics</li>
+        </ul>
+      </div>
+
+      <div class="vendor-card">
+        <div class="vendor-card-head">
+          <div class="vendor-name">Offensive Security</div>
+          <div class="vendor-count">OFFENSIVE</div>
+        </div>
+        <ul class="vendor-certs">
+          <li class="featured">Offensive Security Certified Professional (PWK v2)</li>
+        </ul>
+      </div>
+
+      <div class="vendor-card">
+        <div class="vendor-card-head">
+          <div class="vendor-name">(ISC)²</div>
+          <div class="vendor-count">PROFESSIONAL</div>
+        </div>
+        <ul class="vendor-certs">
+          <li class="featured">Certified in Cybersecurity (CC) — planned August 2026</li>
+          <li class="featured">CISSP — planned end of 2026</li>
+        </ul>
+      </div>
+
+      <div class="vendor-card">
+        <div class="vendor-card-head">
+          <div class="vendor-name">EC-Council</div>
+          <div class="vendor-count">CERTIFIED</div>
+        </div>
+        <ul class="vendor-certs">
+          <li class="featured">EC-Council Certified Security Analyst</li>
+          <li>Certification No. ECC14828568880</li>
+        </ul>
+      </div>
+
+      <div class="vendor-card">
+        <div class="vendor-card-head">
+          <div class="vendor-name">CISA — ICSJWG</div>
+          <div class="vendor-count">12 MODULES</div>
+        </div>
+        <ul class="vendor-certs">
+          <li>Industrial Control System (ICS) Basics &amp; Communication</li>
+          <li>Cybersecurity Differences within IT and ICS Domains</li>
+          <li>Cyber Risks to Industrial Control Systems</li>
+          <li>Critical Infrastructure Sector Dependencies</li>
+          <li>Exploits in an ICS Infrastructure</li>
+          <li>ICS Assessment / Evaluation &amp; Critical Risk Determination</li>
+          <li>Analyse Captured ICS Traffic for Vulnerabilities</li>
+          <li>Wireless Vulnerabilities in ICS Environments</li>
+          <li>Manipulate IDS Logs Using Elastic Stack</li>
+          <li>Evaluate ICS Security Weaknesses at Device Level</li>
+        </ul>
+      </div>
+
+      <div class="vendor-card">
+        <div class="vendor-card-head">
+          <div class="vendor-name">CompTIA</div>
+          <div class="vendor-count">FOUNDATIONS</div>
+        </div>
+        <ul class="vendor-certs">
+          <li>Security+ · Training</li>
+          <li>Network+ · Training</li>
+          <li>Cybersecurity Analyst (CySA+) · Training</li>
+        </ul>
+      </div>
+
+      <div class="vendor-card">
+        <div class="vendor-card-head">
+          <div class="vendor-name">Kaspersky Lab</div>
+          <div class="vendor-count">AUTHORISED TRAINER</div>
+        </div>
+        <ul class="vendor-certs">
+          <li class="featured">KATA / KEDR Authorized Trainer</li>
+          <li>KATA / KEDR Platform — Technical &amp; Presale</li>
+          <li>KEDR Optimum (EDRO) — Technical &amp; Presale</li>
+          <li>Kaspersky Threat Intelligence (TI) — Presale</li>
+          <li>Managed Detection &amp; Response (MDR) — Presale</li>
+          <li>Kaspersky Security Center (KSC KES) — Technical</li>
+          <li>Vulnerability &amp; Patch Management — Technical</li>
+          <li>Kaspersky Web Traffic Security (KWTS) — Technical</li>
+          <li>Kaspersky Secure Mail Gateway (KSMG) — Technical</li>
+          <li>KES Encryption — Technical</li>
+        </ul>
+      </div>
+
+      <div class="vendor-card">
+        <div class="vendor-card-head">
+          <div class="vendor-name">FireEye</div>
+          <div class="vendor-count">FULL STACK</div>
+        </div>
+        <ul class="vendor-certs">
+          <li class="featured">FireEye Systems Engineer (FSE)</li>
+          <li>FireEye Threat Intelligence Overview</li>
+          <li>FireEye Network · Endpoint · Email Security</li>
+          <li>FireEye Helix</li>
+          <li>Verodin Security Instrumentation Platform (SIP) — Technical</li>
+          <li>SIP Fundamentals · Bootcamp</li>
+        </ul>
+      </div>
+
+      <div class="vendor-card">
+        <div class="vendor-card-head">
+          <div class="vendor-name">Sophos</div>
+          <div class="vendor-count">AUTHORISED TRAINER</div>
+        </div>
+        <ul class="vendor-certs">
+          <li class="featured">Sophos Authorized Trainer</li>
+          <li>Certified Architect — Central Endpoint &amp; Server (AT15)</li>
+          <li>Certified Architect — XG Firewall (AU80)</li>
+          <li>Certified Engineer — XG Firewall &amp; Central</li>
+          <li>Synchronized Security — Tech &amp; Sales Specialist</li>
+          <li>Intercept X (ET05)</li>
+          <li>MSP Connect Flex</li>
+          <li>Cyberoam Certified Network &amp; Security Professional</li>
+        </ul>
+      </div>
+
+      <div class="vendor-card">
+        <div class="vendor-card-head">
+          <div class="vendor-name">Forcepoint</div>
+          <div class="vendor-count">20+ MODULES</div>
+        </div>
+        <ul class="vendor-certs">
+          <li class="featured">Certified NGFW Administrator</li>
+          <li>Partner Sales Rep — Levels 1 &amp; 2 (Data, Edge, User)</li>
+          <li>Pre-Sales Engineer L1 — CASB · DLP · Email · Insider Threat · NGFW · Web</li>
+          <li>Pre-Sales Engineer L2 — Data · Edge · User Protection</li>
+          <li>Pre-Sales Engineer Workshops — full portfolio</li>
+          <li>Services Professional — full portfolio</li>
+        </ul>
+      </div>
+
+      <div class="vendor-card">
+        <div class="vendor-card-head">
+          <div class="vendor-name">AlienVault</div>
+          <div class="vendor-count">SIEM / MONITORING</div>
+        </div>
+        <ul class="vendor-certs">
+          <li>USM Anywhere — Deploy, Configure, Manage (ANYDC)</li>
+          <li>USM Anywhere — Security Analysis (ANYSA)</li>
+          <li>USM Appliance for Security Engineers (AUSE)</li>
+        </ul>
+      </div>
+
+      <div class="vendor-card">
+        <div class="vendor-card-head">
+          <div class="vendor-name">Cisco</div>
+          <div class="vendor-count">NETWORK</div>
+        </div>
+        <ul class="vendor-certs">
+          <li class="featured">CCNA Routing &amp; Switching</li>
+        </ul>
+      </div>
+
+      <div class="vendor-card">
+        <div class="vendor-card-head">
+          <div class="vendor-name">Fortinet</div>
+          <div class="vendor-count">NSE PROGRAM</div>
+        </div>
+        <ul class="vendor-certs">
+          <li>Network Security Expert 1 (NSE1)</li>
+          <li>Network Security Expert 2 (NSE2)</li>
+          <li>Network Security Expert 3 (NSE3)</li>
+        </ul>
+      </div>
+
+      <div class="vendor-card">
+        <div class="vendor-card-head">
+          <div class="vendor-name">Quest</div>
+          <div class="vendor-count">PLATFORM</div>
+        </div>
+        <ul class="vendor-certs">
+          <li>Database Performance Monitoring</li>
+          <li>Platform Management Sales</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- === SIGNATURE / PORTRAIT === -->
+<section class="signature" id="signature">
+  <div class="container">
+    <div class="signature-grid">
+
+      <div class="portrait-wrap">
+        <div class="portrait-frame">
+          <img src="data:image/jpeg;base64,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" alt="Khalid Abuelhassan portrait">
+          <div class="scan-overlay"></div>
+        </div>
+        <div class="portrait-tag">
+          <span>// SUBJECT</span>
+          <span>VERIFIED</span>
+        </div>
+      </div>
+
+      <div class="sig-content">
+        <div class="section-num">05 / Signature</div>
+        <h2 class="sig-name">Eng. Khalid<br>Abuelhassan<span class="italic">.</span></h2>
+        <div class="sig-title">Cybersecurity Engineer · Riyadh, KSA</div>
+
+        <div class="contact-rows">
+          <a href="https://www.linkedin.com/in/khalid-abuelhassan-a9a0a945/" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">
+            <div class="contact-row">
+              <span class="c-label">— LinkedIn</span>
+              <span class="c-value">linkedin.com/in/khalid-abuelhassan</span>
+              <span class="c-arrow">→</span>
+            </div>
+          </a>
+          <a id="github-link" href="https://github.com/rowaidy" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">
+            <div class="contact-row">
+              <span class="c-label">— GitHub</span>
+              <span class="c-value">github.com/rowaidy</span>
+              <span class="c-arrow">→</span>
+            </div>
+          </a>
+          <div class="contact-row">
+            <span class="c-label">— Based</span>
+            <span class="c-value">Riyadh · Saudi Arabia</span>
+            <span class="c-arrow">◆</span>
+          </div>
+          <div class="contact-row">
+            <span class="c-label">— Council</span>
+            <span class="c-value">Saudi Council of Engineers</span>
+            <span class="c-arrow">◆</span>
+          </div>
+        </div>
+
+        <div class="sig-actions">
+          <a href="Khalid-Abuelhassan-CV.pdf" download class="action-btn primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square">
+              <path d="M12 3v14m0 0l-5-5m5 5l5-5M5 21h14"/>
+            </svg>
+            Download Full CV
+          </a>
+          <a id="github-btn" href="https://github.com/rowaidy" target="_blank" rel="noopener" class="action-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6 0-3.2 0 0 1-.3 3.4 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.6.2 2.8.1 3.2.8.8 1.3 1.9 1.3 3.1 0 4.6-2.8 5.6-5.5 5.9.5.4.9 1.1.9 2.3v3.3c0 .3.1.7.8.6A12 12 0 0 0 12 .3"/>
+            </svg>
+            View GitHub
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- === FOOTER === -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-sig">— K.A.</div>
+      <div class="footer-meta">
+        CV updated March 2025 · Site updated 2026<br>
+        References &amp; documentation available on request<br>
+        <span style="color: var(--ink-faint);">// EOF</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
